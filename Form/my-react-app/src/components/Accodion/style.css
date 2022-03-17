@@ -1,0 +1,7 @@
+.panel{
+    height: 0;
+    overflow: hidden;
+}
+.panel.active{
+    height: auto;
+}

@@ -1,0 +1,19 @@
+.test{
+    display: flex;
+    width: 300px;
+    height: 300px;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 30px 0;
+    :global{
+        button{
+            background-color: yellow;
+            outline: none;
+            margin-left: 10px;
+            padding: 10px;
+            border: none;
+        }    
+    }
+}
