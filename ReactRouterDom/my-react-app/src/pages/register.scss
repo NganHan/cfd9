@@ -1,0 +1,11 @@
+.register-course{
+    .error-text{
+        color: red;
+        width: 100% !important;
+        text-align: right;
+        font-size: 80%;
+    }
+    label{
+        flex-wrap: wrap;
+    }
+}
