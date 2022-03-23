@@ -2,7 +2,25 @@ import { useEffect, useState } from 'react'
 // import Accodion from './components/Accodion'
 import CountDown from './components/CountDown'
 import ToDoList from './components/ToDoList'
-// import CountDownBox from './components/CountDownBox'
+import MainLayout from './layouts/MainLayout'
+import './assets/dest/fonts.css'
+import './assets/dest/style.min.css'
+import './assets/dest/stylefinal.min.css'
+import './assets/dest/stylelibs.min.css'
+import './assets/style/style.scss'
+import Register from './pages/Register'
+import Home from './pages/Home'
+import Page404 from './pages/Page404'
+import Course from './pages/Course'
+import { Route, Routes } from 'react-router-dom'
+import Profile from './pages/Profile'
+import ProfilePayment from './pages/Profile/Payment'
+import ProfileProject from './pages/Profile/Project'
+import Coin from './pages/Profile/Coin'
+import Info from './pages/Profile/Info'
+import Team from './pages/Team'
+import CourseDetail from './pages/Course/CourseDetail'
+import {COURSE_DETAIL_PATH, COURSE_REGISTER_PATH, HOME_PATH} from './constants/path'
 
 const TODO_APP_KEY_STORAGE = 'TODO_APP'
 function App() {
@@ -39,27 +57,46 @@ function App() {
       {/* Reactjsssss */}
       {/* <CountDownBox color="red" init={1}/>
       <CountDownBox color="black" init={1}/> */}
-      <CountDown color="red"/>
-      <CountDown color="black"/>
+      {/* <CountDown color="red"/>
+      <CountDown color="black"/> */}
       <hr />
       {/* <Accodion /> */}
-      <ToDoList 
+      {/* <ToDoList 
         toDoList={toDoList}
         handleAdd={handleAdd}
         handleComplete = {handleComplete}
-        // toDoList = {[
-        //   {
-        //     id: 1,
-        //     name: 'Cong viec A',
-        //     isComplete: false
-        //   },
-        //   {
-        //     id: 2,
-        //     name: 'Cong viec B',
-        //     isComplete: true
-        //   }
-        // ]}
-      />
+      /> */}
+      {/* <RegisterForm /> */}
+
+      <Routes>
+        <Route element = {<MainLayout />}>
+          <Route path={HOME_PATH} element={<Home />}/>
+          <Route path="/khoa-hoc" element={<Course />}/>
+          <Route path={COURSE_DETAIL_PATH} element={<CourseDetail />}/>
+          <Route path={COURSE_REGISTER_PATH} element={<Register />}/>
+          <Route path="/team" element={<Team />}/>
+          <Route path="/ca-nhan" element={<Profile path = "/ca-nhan"/>}>
+            <Route index element={<Info />}/>
+            <Route path="khoa-hoc" element={<Course />}>
+              <Route path="coin" element={<Coin />}/>
+              <Route path="thanh-toan" element={<ProfilePayment />}/>
+            </Route>
+            <Route path="coin" element={<Coin />}/>
+            <Route path="thanh-toan" element={<ProfilePayment />}/>
+            <Route path="du-an" element={<ProfileProject />}/>
+          </Route>
+          <Route path='*' element={<Page404 />} />
+        </Route>
+      </Routes>
+
+
+
+      {/* <MainLayout> */}
+        {/* <Home /> */}
+        {/* <Page404 /> */}
+        {/* <Course /> */}
+        {/* <Register /> */}
+      {/* </MainLayout> */}
     </div>
   )
 }

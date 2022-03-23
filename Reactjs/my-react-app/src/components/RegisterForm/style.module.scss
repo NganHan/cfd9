@@ -1,0 +1,54 @@
+.register-course{
+    border: 1px solid #ccc;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 750px;
+    :global{
+        .title{
+            text-align: center;
+        }
+        label{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 50px;
+            p{
+                width: 180px;
+                font-family: sans-serif;
+                span{
+                    color: #00afab;
+                }
+            }
+            .error-text{
+                color: red;
+                width: 100%;
+            }
+            textarea, input[type="text"]{
+                flex: 1;
+                height: 40px;
+                padding: 0 20px;
+                outline: none;
+                border: 1px solid #dbe0df;
+                font-size: 18px;
+            }
+            textarea{
+                padding: 15px 20px;
+                resize: none;
+                height: 120px;
+            }
+        }
+        .btn{
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 15px;
+            background-color: #00afab;
+            color: white;
+            border-radius: 100px;
+            max-width: 150px;
+            border: none;
+            height: 40px;
+        }
+    }
+}
