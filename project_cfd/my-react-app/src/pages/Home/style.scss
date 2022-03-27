@@ -1,0 +1,23 @@
+.banner{
+    .btn{
+        a{
+            color: #fff;
+        }
+    }
+}
+.section-action{
+    .btn{
+        &:hover{
+            a{
+                color: #fff;
+            }
+        }
+        a{
+            color: #00afab;
+            text-decoration: none;
+            &:hover{
+                color: #fff;
+            }
+        }
+    }   
+}
