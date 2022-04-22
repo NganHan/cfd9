@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, Navigate, Outlet } from 'react-router-dom'
-import {ACCOUNT_WISHLIST_PATH, ACCOUNT_PATH, LOGOUT_PATH, ACCOUNT_ORDERS_PATH, PERSONAL_INFO_PATH, ACCOUNT_ADDRESS_PATH, ACCOUNT_PAYMENT_PATH} from '../../core/constants/path'
+import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom'
+import {ACCOUNT_WISHLIST_PATH, ACCOUNT_PATH, AUTH, LOGOUT_PATH, ACCOUNT_ORDERS_PATH, PERSONAL_INFO_PATH, ACCOUNT_ADDRESS_PATH, ACCOUNT_PAYMENT_PATH} from '../../core/constants/path'
 import { actionLogout } from '../../stores/auth'
 
 export default function Account() {
   const {user} = useSelector(store => store.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const handleLogout = (ev) => {
+    // console.log('user', user);
     ev.preventDefault()
-    console.log('click');
     dispatch(actionLogout())
+    navigate(AUTH)
   }
   return (
     <>

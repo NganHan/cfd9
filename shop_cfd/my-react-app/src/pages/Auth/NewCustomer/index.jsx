@@ -8,6 +8,7 @@ import { useToggle } from '../../../core/hooks/useToggle'
 import validate from '../../../core/utils/validate'
 import { actionFetchRegister } from '../../../stores/auth'
 import {Navigate} from 'react-router-dom'
+import { message } from 'antd'
 
 export default function NewCustomer() {
     const dispatch = useDispatch()
@@ -29,19 +30,18 @@ export default function NewCustomer() {
         if(Object.keys(errorObj).length === 0){
             isFetchRegister.setTrue()
             dispatch(actionFetchRegister({
+                
                 data: form,
-                error(error){
-                    console.log(error);
-                    setRegisterError(error)
+                error(message){
+                    setRegisterError(message)
                 },
                 success(){
-
+                    message.success('Chuc mung ban da dang ky thanh cong!')
                 },
                 end(){
                     isFetchRegister.setFalse()
                 }
             }))
-
         }
     }
     if(user){

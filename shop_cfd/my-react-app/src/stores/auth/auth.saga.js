@@ -4,6 +4,7 @@ import {authService} from '../../services/authService'
 import {setToken, getToken, clearToken, setUser, USER_STORAGE_KEY} from '../../core/utils/token'
 import {userService} from '../../services/userService'
 import { actionfetchUser, userActions } from "../user"
+import { useNavigate } from "react-router-dom"
 
 function* fetchLogin(action){
     try{
@@ -18,9 +19,9 @@ function* fetchLogin(action){
 
         setToken(res.data)
         yield put(actionfetchUser())
-        // const user = yield call(userService.getInfo)
-        // setUser(user.data)
-        // yield put(userActions.setUser(user.data))
+        const user = yield call(userService.getInfo)
+        setUser(user.data)
+        yield put(userActions.setUser(user.data))
 
         action.payload?.success?.()
     } catch(error){
@@ -30,9 +31,10 @@ function* fetchLogin(action){
         // yield put(authActions.statusFetchLogin(false))
     }
 }
-function* logout(){
+function* logout(action){
     clearToken()
-    localStorage.removeItem(USER_STORAGE_KEY)
+ 
+    // localStorage.removeItem(USER_STORAGE_KEY)
 }
 function* fetchRegister(action){
     try{
@@ -42,6 +44,10 @@ function* fetchRegister(action){
         }
         setToken(res.data)
         yield put(actionfetchUser())
+        const user = yield call(userService.getInfo)
+        setUser(user.data)
+        yield put(userActions.setUser(user.data))
+
         action.payload?.success?.()
 
     } finally{

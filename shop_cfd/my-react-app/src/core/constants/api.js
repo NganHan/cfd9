@@ -19,7 +19,7 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use((res) => {
     return res.data
 }, async (error) => {
-    if(error?.response?.status === 403){
+    if(error?.response?.status === 403 && error.response.data.error_code === 'TOKEN_EXPIRED'){
         let token = getToken()
         if(token){
             const res = await authService.refreshToken({

@@ -29,6 +29,7 @@ import "antd/dist/antd.css";
 import vi from './locals/vi.json'
 import en from './locals/en.json'
 import fr from './locals/fr.json'
+import './assets/css/custom.scss'
 
 
 function App() {

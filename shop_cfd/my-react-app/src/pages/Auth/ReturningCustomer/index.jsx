@@ -7,17 +7,19 @@ import Button from '../../../components/Button'
 import {Navigate} from 'react-router-dom'
 import {ACCOUNT_PATH} from '../../../core/constants/path'
 import { useToggle } from '../../../core/hooks/useToggle'
+import { message } from 'antd'
 
 export default function ReturningCustomer() {
     const [error, setError] = useState({})
     const [form, setForm] = useState({})
     const [errorMessage, setErrorMessage] = useState('')
+    const [loginError, setLoginError] = useState('')
     const dispatch = useDispatch()
     // const {isFetchLogin} = useSelector(store => store.auth)
     const {user} = useSelector(store => store.user)
     const isFetchLogin = useToggle()
 
-    console.log('isFetchLogin', isFetchLogin);
+    // console.log('isFetchLogin', isFetchLogin);
     const onClick = async (ev) => {
         ev.preventDefault();
         const errorObj = validate(form,{
@@ -32,7 +34,10 @@ export default function ReturningCustomer() {
             isFetchLogin.setTrue()
             dispatch(actionFetchLogin({
                 data: form,
-                success(){},
+                success(){
+                    message.success('Chao mung ban quay tro lai')
+                    // navigate()
+                },
                 error(error){
                     setLoginError(error)
                 },
@@ -44,8 +49,10 @@ export default function ReturningCustomer() {
         }
     }
     if(user){
+        
         return <Navigate to={ACCOUNT_PATH}/>
     }
+    console.log('user: ',user);
     return (
         <div className="col-12 col-md-6">
             {/* Card */}
@@ -55,7 +62,7 @@ export default function ReturningCustomer() {
                     <h6 className="mb-7">Returning Customer</h6>
                     {/* Form */}
                     {
-                        errorMessage && <p className="error-message" style={{color: 'red'}}>{errorMessage}</p>
+                        loginError && <p className="error-message" style={{color: 'red'}}>{loginError}</p>
                     }
                     <form>
                         <div className="row">

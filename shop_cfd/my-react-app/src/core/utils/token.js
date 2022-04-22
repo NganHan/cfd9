@@ -16,6 +16,9 @@ export const getToken = () => {
 export const clearToken = () => {
     localStorage.removeItem(TOKEN_STORAGE_KEY)
 }
+export const clearUser = () => {
+    localStorage.removeItem(USER_STORAGE_KEY)
+}
 
 export const  setUser = (data) => {
     localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(data))
@@ -23,7 +26,7 @@ export const  setUser = (data) => {
 
 export const getUser = () => {
     let user = localStorage.getItem(USER_STORAGE_KEY)
-    if(user){
+    if(user !== 'undefined'){
         user = JSON.parse(user)
     }
     return user
